@@ -23,5 +23,9 @@ Aplicação web desenvolvida para o Programa ARCA, iniciativa oficial da Prefeit
 - Vinícius Araújo Porto Miglio
 - Vitor Nascimento da Silva
 
+## 🔗 Deploy
+- GitHub Pages: theglabs.github.io/projeto_arca/
+- Vercel: https://projeto-arca-gamma.vercel.app/
+
 ## 🎓 UVV — Universidade de Vila Velha
 Projeto Integrador — Disciplinas de UX e Construção Web · 2026
