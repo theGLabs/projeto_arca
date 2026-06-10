@@ -75,5 +75,5 @@ Projeto Integrador — Disciplinas de UX e Construção Web · 2026
 ## 📬 Contato
 
 - GitHub: [@theGLabs](https://github.com/theGLabs)
-- LinkedIn: [Guilherme Fabris](https://www.linkedin.com/in/guilherme-fabris/)
+- LinkedIn: [Guilherme Fabris](https://www.linkedin.com/in/guilherme-fabris-a778a6356/details/education/)
 - Email: guidiasfabris@gmail.com
