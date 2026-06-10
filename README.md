@@ -24,7 +24,7 @@ Aplicação web desenvolvida para o Programa ARCA, iniciativa oficial da Prefeit
 - Vitor Nascimento da Silva
 
 ## 🔗 Deploy
-- GitHub Pages: theglabs.github.io/projeto_arca/
+- GitHub Pages: https://theglabs.github.io/projeto_arca/
 - Vercel: https://projeto-arca-gamma.vercel.app/
 
 ## 🎓 UVV — Universidade de Vila Velha
