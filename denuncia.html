@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Denúncia — Programa ARCA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/denuncia.css">
+</head>
+<body data-page="denuncia">
+<div id="toast">✓ <span id="tmsg"></span></div>
+
+<nav><div class="nav-inner">
+  <a class="nav-logo" onclick="go('home')"><div class="nav-logo-icon">🐾</div><span class="nav-logo-text">Programa ARCA</span></a>
+  <ul class="nav-links">
+    <li><a id="nl-home" onclick="go('home')">Início</a></li>
+    <li><a id="nl-listagem" onclick="go('listagem')">Adoção</a></li>
+    <li><a id="nl-castracao" onclick="go('castracao')">Castração</a></li>
+    <li><a id="nl-resgate" onclick="go('resgate')">Resgate</a></li>
+    <li><a id="nl-denuncia" onclick="go('denuncia')">Denúncia</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="prof-btn" id="pb-main" onclick="toggleDrop('pd-main','pb-main')">
+      <div class="prof-av" id="nav-av">?</div>
+      <span class="prof-name" id="nav-nm">Usuário</span>
+      <span class="prof-arrow" id="nav-arr">▼</span>
+    </div>
+    <div class="prof-drop" id="pd-main">
+      <div class="prof-drop-head">
+        <div class="prof-drop-name" id="nav-pfn">Usuário</div>
+        <div class="prof-drop-email" id="nav-pfe">email@gmail.com</div>
+      </div>
+      <div class="prof-drop-item" onclick="go('listagem');closeDrops()">🐶 Ver animais</div>
+      <div class="prof-drop-item" onclick="go('castracao');closeDrops()">✂️ Agendar castração</div>
+      <div class="prof-drop-item" onclick="go('resgate');closeDrops()">🚑 Solicitar resgate</div>
+      <div class="prof-drop-item" onclick="go('denuncia');closeDrops()">⚠️ Fazer denúncia</div>
+      <div class="prof-drop-div"></div>
+      <div class="prof-drop-item danger" onclick="doLogout()">↩ Sair</div>
+    </div>
+  </div>
+</div></nav>
+
+
+<div class="ph"><div class="ctr"><h1>Denúncia de Maus-Tratos</h1><p>Reporte casos de maus-tratos. Pode ser feito de forma anônima.</p></div></div>
+  <div class="fpl">
+    <div>
+      <div class="bc"><span onclick="go('home')">Início</span><span class="sep">›</span><span class="cur">Denúncia</span></div>
+      <div class="fc" id="form-denuncia">
+        <div class="fs"><div class="fst">📍 Localização</div>
+          <p class="req-note"><span class="req">*</span> Campo obrigatório</p>
+          <div class="fg"><label>Endereço / Ponto de referência <span class="req">*</span></label><input type="text" data-req="true" placeholder="Ex: Rua das Flores, 123..."><div class="ferr">Campo obrigatório.</div></div>
+          <div class="fr2"><div class="fg"><label>Bairro <span class="req">*</span></label><input type="text" data-req="true" placeholder="Bairro"><div class="ferr">Obrigatório.</div></div><div class="fg"><label>Cidade <span class="req">*</span></label><input type="text" data-req="true" placeholder="Serra"><div class="ferr">Obrigatório.</div></div></div>
+          <button class="btn btn-s" onclick="toast('📍 Localização compartilhada!')">📍 Compartilhar localização</button>
+        </div>
+        <div class="fs"><div class="fst">🐾 Sobre o animal</div>
+          <div class="fg"><label>Espécie <span class="req">*</span></label><div class="rg"><label><input type="radio" name="ed"> Gato</label><label><input type="radio" name="ed"> Cachorro</label><label><input type="radio" name="ed"> Outro</label></div></div>
+          <div class="fg"><label>Quantidade <span class="req">*</span></label><input type="number" data-req="true" placeholder="1" min="1" onkeypress="return event.charCode>=48&&event.charCode<=57"><div class="ferr">Campo obrigatório.</div></div>
+          <div class="fg"><label>Condição <span class="req">*</span></label>
+            <label class="cl"><input type="checkbox"> Ferido</label>
+            <label class="cl"><input type="checkbox"> Magreza / Desnutrição</label>
+            <label class="cl"><input type="checkbox"> Preso</label>
+            <label class="cl"><input type="checkbox"> Sem água e/ou comida</label>
+            <label class="cl"><input type="checkbox"> Outros</label>
+          </div>
+          <div class="fg" style="margin-top:10px"><label>Ou descreva <span class="req">*</span></label><textarea data-req="true" placeholder="Descreva a situação..."></textarea><div class="ferr">Campo obrigatório.</div></div>
+        </div>
+        <div class="fs"><div class="fst">📸 Evidências</div>
+          <div class="up"><div style="font-size:32px;margin-bottom:8px">☁️</div><p><strong>Escolha os arquivos</strong> ou arraste e solte</p><p style="font-size:11px;margin-top:4px;color:var(--ts)">Fotos e vídeos são fundamentais</p></div>
+        </div>
+        <div class="fs"><div class="fst">🔁 Frequência</div>
+          <label class="cl"><input type="checkbox"> Uma vez</label>
+          <label class="cl"><input type="checkbox"> Às vezes</label>
+          <label class="cl"><input type="checkbox"> Sempre</label>
+        </div>
+        <div class="fs"><div class="fst">📞 Contato <span style="font-size:11px;color:var(--ts);font-weight:400">(opcional — denúncia pode ser anônima)</span></div>
+          <div class="al al-i">🔒 Sua identidade será totalmente protegida se não preencher os dados abaixo.</div>
+          <div class="fg"><label>Nome completo</label><input type="text" placeholder="Opcional"></div>
+          <div class="fr2"><div class="fg"><label>Telefone</label><input type="tel" placeholder="Opcional" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===40||event.charCode===41||event.charCode===45||event.charCode===43"></div><div class="fg"><label>E-mail</label><input type="email" placeholder="Opcional"></div></div>
+        </div>
+        <label class="cl" id="ck-denuncia"><input type="checkbox"> Confirmo que todas as informações estão corretas e são verídicas</label>
+        <div style="margin-top:24px"><button class="btn btn-p btn-full btn-lg" onclick="submitF('denuncia')">Enviar denúncia</button></div>
+        <div id="success-denuncia" class="al al-s" style="display:none;margin-top:16px">✓ Denúncia registrada! Nossa equipe irá investigar.</div>
+      </div>
+    </div>
+    <div>
+      <div class="sc"><h4>🔒 Identidade protegida</h4><p>Denúncias anônimas são totalmente aceitas.</p></div>
+      <div class="sc"><h4>O que acontece?</h4><ul class="sl"><li>Denúncia registrada e analisada</li><li>Equipe designada para investigar</li><li>Ações legais quando necessário</li></ul></div>
+    </div>
+  </div>
+  <footer><span>Prefeitura Municipal da Serra · Secretaria de Meio Ambiente</span><div><a>Contato</a><a>Acessibilidade</a><a>Privacidade</a></div></footer>
+</div>
+<script src="js/global.js"></script>
+<script src="js/forms.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

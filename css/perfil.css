@@ -1,0 +1,41 @@
+/* PERFIL */
+
+.pfl{display:grid;grid-template-columns:300px 1fr;gap:40px;padding:40px;max-width:1100px;margin:0 auto}
+.pmg{height:220px;background:linear-gradient(135deg,var(--orp),var(--sd));border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:80px;margin-bottom:12px;border:1px solid var(--bo);transition:transform .3s;cursor:zoom-in}
+.pmg:hover{transform:scale(1.02)}
+.pts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pt{height:64px;background:linear-gradient(135deg,var(--orp),var(--sd));border-radius:var(--rs);display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid transparent;transition:all .2s}
+.pt:hover,.pt.active{border-color:var(--or);transform:scale(1.05)}
+.pfc{background:var(--wh);border:1px solid var(--bo);border-radius:var(--r);padding:20px;margin-top:20px}
+.pfct{font-size:13px;font-weight:600;margin-bottom:14px}
+.fr{display:flex;justify-content:space-between;margin-bottom:10px;font-size:13px;border-bottom:1px solid var(--bo);padding-bottom:10px;transition:all .15s;border-radius:4px;padding:6px}
+.fr:last-child{border-bottom:none;margin-bottom:0}
+.fr:hover{background:var(--cr)}
+.fk{color:var(--ts)}
+.fv{font-weight:500}
+.pn{font-family:'Fraunces',serif;font-size:40px;font-weight:600;margin-bottom:6px}
+.ps{font-size:13px;color:var(--ts);margin-bottom:24px}
+.pb3{background:var(--wh);border:1px solid var(--bo);border-radius:var(--r);padding:20px;margin-bottom:16px;transition:box-shadow .2s}
+.pb3:hover{box-shadow:var(--sh)}
+.pb3 h4{font-size:14px;font-weight:600;margin-bottom:12px}
+.pb3 p{font-size:14px;color:var(--ts);line-height:1.6}
+.tgs{display:flex;flex-wrap:wrap;gap:8px}
+
+/* MODAL ANIMAL */
+
+.amodal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(4px)}
+.amodal-bg.open{opacity:1;pointer-events:all}
+.amodal{background:var(--wh);border-radius:20px;max-width:520px;width:90%;box-shadow:var(--shl);transform:scale(.92);transition:transform .3s;overflow:hidden}
+.amodal-bg.open .amodal{transform:scale(1)}
+.amodal-img{height:200px;background:linear-gradient(135deg,var(--orp),var(--sd));display:flex;align-items:center;justify-content:center;font-size:80px}
+.amodal-body{padding:28px}
+.amodal-name{font-family:'Fraunces',serif;font-size:28px;font-weight:600;margin-bottom:6px}
+.amodal-meta{font-size:13px;color:var(--ts);margin-bottom:16px}
+.amodal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.amodal-row{background:var(--cr);border-radius:var(--rs);padding:10px 12px}
+.amodal-row .k{font-size:11px;color:var(--ts);margin-bottom:2px}
+.amodal-row .v{font-size:13px;font-weight:500}
+.amodal-desc{font-size:14px;color:var(--ts);line-height:1.6;margin-bottom:20px}
+.amodal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;background:rgba(0,0,0,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;font-size:16px;transition:background .2s}
+.amodal-close:hover{background:rgba(0,0,0,.5)}
+.amodal-header{position:relative}

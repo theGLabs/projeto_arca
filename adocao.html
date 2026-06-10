@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulário de Adoção — Programa ARCA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/adocao.css">
+</head>
+<body data-page="adocao">
+<div id="toast">✓ <span id="tmsg"></span></div>
+
+<nav><div class="nav-inner">
+  <a class="nav-logo" onclick="go('home')"><div class="nav-logo-icon">🐾</div><span class="nav-logo-text">Programa ARCA</span></a>
+  <ul class="nav-links">
+    <li><a id="nl-home" onclick="go('home')">Início</a></li>
+    <li><a id="nl-listagem" onclick="go('listagem')">Adoção</a></li>
+    <li><a id="nl-castracao" onclick="go('castracao')">Castração</a></li>
+    <li><a id="nl-resgate" onclick="go('resgate')">Resgate</a></li>
+    <li><a id="nl-denuncia" onclick="go('denuncia')">Denúncia</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="prof-btn" id="pb-main" onclick="toggleDrop('pd-main','pb-main')">
+      <div class="prof-av" id="nav-av">?</div>
+      <span class="prof-name" id="nav-nm">Usuário</span>
+      <span class="prof-arrow" id="nav-arr">▼</span>
+    </div>
+    <div class="prof-drop" id="pd-main">
+      <div class="prof-drop-head">
+        <div class="prof-drop-name" id="nav-pfn">Usuário</div>
+        <div class="prof-drop-email" id="nav-pfe">email@gmail.com</div>
+      </div>
+      <div class="prof-drop-item" onclick="go('listagem');closeDrops()">🐶 Ver animais</div>
+      <div class="prof-drop-item" onclick="go('castracao');closeDrops()">✂️ Agendar castração</div>
+      <div class="prof-drop-item" onclick="go('resgate');closeDrops()">🚑 Solicitar resgate</div>
+      <div class="prof-drop-item" onclick="go('denuncia');closeDrops()">⚠️ Fazer denúncia</div>
+      <div class="prof-drop-div"></div>
+      <div class="prof-drop-item danger" onclick="doLogout()">↩ Sair</div>
+    </div>
+  </div>
+</div></nav>
+
+
+<div class="ph"><div class="ctr"><h1>Formulário de Adoção</h1><p>Preencha os dados para solicitar a adoção</p></div></div>
+<div class="fpl">
+  <div>
+    <div class="bc"><span onclick="go('home')">Início</span><span class="sep">›</span><span onclick="go('listagem')">Adoção</span><span class="sep">›</span><span class="cur">Formulário</span></div>
+    <div class="pw"><div class="pl"><span>Progresso</span><span id="pp">0%</span></div><div class="pb"><div class="pf" id="pf" style="width:0%"></div></div></div>
+    <div class="fc" id="form-adocao">
+      <div class="ach"><div class="ach-img" id="ach-emoji">🐕</div><div><h4 style="font-size:15px;font-weight:600" id="ach-name">Animal selecionado</h4><p style="font-size:12px;color:var(--ts)" id="ach-meta">Selecione um animal na listagem</p></div><span class="ach-ch" onclick="go('listagem')">Trocar</span></div>
+      <div class="fs"><div class="fst">👤 Dados pessoais</div>
+        <p class="req-note"><span class="req">*</span> Campo obrigatório</p>
+        <div class="fg"><label>Nome completo <span class="req">*</span></label><input type="text" data-req="true" placeholder="Seu nome completo" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div>
+        <div class="fr2"><div class="fg"><label>Telefone <span class="req">*</span></label><input type="tel" data-req="true" placeholder="(27) 99999-9999" oninput="updP()" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===40||event.charCode===41||event.charCode===45||event.charCode===43"><div class="ferr">Campo obrigatório.</div></div><div class="fg"><label>CPF <span class="req">*</span></label><input type="text" data-req="true" placeholder="000.000.000-00" oninput="updP()" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===46"><div class="ferr">Campo obrigatório.</div></div></div>
+        <div class="fg"><label>E-mail <span class="req">*</span></label><input type="email" data-req="true" placeholder="seu@gmail.com" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div>
+      </div>
+      <div class="fs"><div class="fst">📍 Endereço</div>
+        <div class="fr2"><div class="fg"><label>Endereço <span class="req">*</span></label><input type="text" data-req="true" placeholder="Rua, número" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div><div class="fg"><label>CEP <span class="req">*</span></label><input type="text" data-req="true" placeholder="00000-000" oninput="updP()" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===45"><div class="ferr">Campo obrigatório.</div></div></div>
+        <div class="fr2"><div class="fg"><label>Cidade <span class="req">*</span></label><input type="text" data-req="true" placeholder="Serra" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div><div class="fg"><label>Bairro <span class="req">*</span></label><input type="text" data-req="true" placeholder="Seu bairro" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div></div>
+      </div>
+      <div class="fs"><div class="fst">🏠 Residência</div>
+        <div class="fg"><label>Tipo de moradia <span class="req">*</span></label><input type="text" data-req="true" placeholder="Casa, apartamento..." oninput="updP()"><div class="ferr">Campo obrigatório.</div></div>
+        <div class="fg"><label>Nº de pessoas <span class="req">*</span></label><input type="number" data-req="true" placeholder="0" min="1" oninput="updP()" onkeypress="return event.charCode>=48&&event.charCode<=57"><div class="ferr">Campo obrigatório.</div></div>
+        <div class="fr2">
+          <div class="fg"><label>Moradia <span class="req">*</span></label><div class="rg"><label><input type="radio" name="mor"> Alugada</label><label><input type="radio" name="mor"> Própria</label></div></div>
+          <div class="fg"><label>Quintal? <span class="req">*</span></label><div class="rg"><label><input type="radio" name="q"> Sim</label><label><input type="radio" name="q"> Não</label></div></div>
+        </div>
+        <div class="fr2">
+          <div class="fg"><label>Rede/proteção? <span class="req">*</span></label><div class="rg"><label><input type="radio" name="re"> Sim</label><label><input type="radio" name="re"> Não</label></div></div>
+          <div class="fg"><label>Crianças? <span class="req">*</span></label><div class="rg"><label><input type="radio" name="cr"> Sim</label><label><input type="radio" name="cr"> Não</label></div></div>
+        </div>
+      </div>
+      <div class="fs"><div class="fst">🐾 Experiência</div>
+        <div class="fg"><label>Já teve pet antes? <span class="req">*</span></label><textarea data-req="true" placeholder="Descreva..." oninput="updP()"></textarea><div class="ferr">Campo obrigatório.</div></div>
+        <div class="fg"><label>Tem outros animais?</label><textarea placeholder="Se sim, quais?"></textarea></div>
+      </div>
+      <div class="fs"><div class="fst">❤️ Sobre a adoção</div>
+        <div class="fg"><label>Por que quer adotar? <span class="req">*</span></label><textarea data-req="true" placeholder="Conte sua motivação..." oninput="updP()"></textarea><div class="ferr">Campo obrigatório.</div></div>
+        <div class="fr2"><div class="fg"><label>Tempo sozinho/dia <span class="req">*</span></label><input type="text" data-req="true" placeholder="Ex: 4 horas" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div><div class="fg"><label>Quem cuida nas férias? <span class="req">*</span></label><input type="text" data-req="true" placeholder="Ex: familiar" oninput="updP()"><div class="ferr">Campo obrigatório.</div></div></div>
+      </div>
+      <label class="cl" id="ck-adocao"><input type="checkbox"> Confirmo que todas as informações estão corretas e são verídicas</label>
+      <div style="margin-top:24px"><button class="btn btn-p btn-full btn-lg" onclick="submitF('adocao')">Enviar solicitação</button></div>
+      <div id="success-adocao" class="al al-s" style="display:none;margin-top:16px">✓ Solicitação enviada! Nossa equipe entrará em contato em até 5 dias úteis.</div>
+    </div>
+  </div>
+  <div>
+    <div class="sc"><h4>Como funciona?</h4><ul class="sl"><li>Preencha o formulário</li><li>Equipe analisa a solicitação</li><li>Visita ao animal agendada</li><li>Adoção confirmada!</li></ul></div>
+    <div class="sc"><h4>Dúvidas?</h4><p><strong>(27) 3291-2000</strong> · seg a sex 8h–17h</p></div>
+  </div>
+</div>
+
+<footer><span>Prefeitura Municipal da Serra · Secretaria de Meio Ambiente</span><div><a>Contato</a><a>Acessibilidade</a><a>Privacidade</a></div></footer>
+<script src="js/global.js"></script>
+<script src="js/listagem.js"></script>
+<script src="js/forms.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

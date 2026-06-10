@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Castração — Programa ARCA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/castracao.css">
+</head>
+<body data-page="castracao">
+<div id="toast">✓ <span id="tmsg"></span></div>
+
+<nav><div class="nav-inner">
+  <a class="nav-logo" onclick="go('home')"><div class="nav-logo-icon">🐾</div><span class="nav-logo-text">Programa ARCA</span></a>
+  <ul class="nav-links">
+    <li><a id="nl-home" onclick="go('home')">Início</a></li>
+    <li><a id="nl-listagem" onclick="go('listagem')">Adoção</a></li>
+    <li><a id="nl-castracao" onclick="go('castracao')">Castração</a></li>
+    <li><a id="nl-resgate" onclick="go('resgate')">Resgate</a></li>
+    <li><a id="nl-denuncia" onclick="go('denuncia')">Denúncia</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="prof-btn" id="pb-main" onclick="toggleDrop('pd-main','pb-main')">
+      <div class="prof-av" id="nav-av">?</div>
+      <span class="prof-name" id="nav-nm">Usuário</span>
+      <span class="prof-arrow" id="nav-arr">▼</span>
+    </div>
+    <div class="prof-drop" id="pd-main">
+      <div class="prof-drop-head">
+        <div class="prof-drop-name" id="nav-pfn">Usuário</div>
+        <div class="prof-drop-email" id="nav-pfe">email@gmail.com</div>
+      </div>
+      <div class="prof-drop-item" onclick="go('listagem');closeDrops()">🐶 Ver animais</div>
+      <div class="prof-drop-item" onclick="go('castracao');closeDrops()">✂️ Agendar castração</div>
+      <div class="prof-drop-item" onclick="go('resgate');closeDrops()">🚑 Solicitar resgate</div>
+      <div class="prof-drop-item" onclick="go('denuncia');closeDrops()">⚠️ Fazer denúncia</div>
+      <div class="prof-drop-div"></div>
+      <div class="prof-drop-item danger" onclick="doLogout()">↩ Sair</div>
+    </div>
+  </div>
+</div></nav>
+
+
+<div class="ph"><div class="ctr"><h1>Agendamento de Castração</h1><p>Cadastre seu pet no programa de controle populacional</p></div></div>
+  <div class="fpl">
+    <div>
+      <div class="bc"><span onclick="go('home')">Início</span><span class="sep">›</span><span class="cur">Castração</span></div>
+      <div class="fc" id="form-castracao">
+        <div class="al al-i">ℹ Após o cadastro, a Secretaria entrará em contato para marcação de data e horário no CRAS de Laranjeiras.</div>
+        <div class="fs"><div class="fst">👤 Dados do tutor</div>
+          <p class="req-note"><span class="req">*</span> Campo obrigatório</p>
+          <div class="fg"><label>Nome completo <span class="req">*</span></label><input type="text" data-req="true" placeholder="Seu nome completo"><div class="ferr">Campo obrigatório.</div></div>
+          <div class="fr2"><div class="fg"><label>Telefone <span class="req">*</span></label><input type="tel" data-req="true" placeholder="(27) 99999-9999" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===40||event.charCode===41||event.charCode===45||event.charCode===43"><div class="ferr">Campo obrigatório.</div></div><div class="fg"><label>CPF <span class="req">*</span></label><input type="text" data-req="true" placeholder="000.000.000-00" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===46"><div class="ferr">Campo obrigatório.</div></div></div>
+          <div class="fg"><label>E-mail <span class="req">*</span></label><input type="email" data-req="true" placeholder="seu@gmail.com"><div class="ferr">Campo obrigatório.</div></div>
+        </div>
+        <div class="fs"><div class="fst">🐾 Dados do animal</div>
+          <div class="fg"><label>Espécie <span class="req">*</span></label><div class="rg"><label><input type="radio" name="ec"> Gato</label><label><input type="radio" name="ec"> Cachorro</label></div></div>
+          <div class="fg"><label>Nome <span class="req">*</span></label><input type="text" data-req="true" placeholder="Nome do pet"><div class="ferr">Campo obrigatório.</div></div>
+          <div class="fr3"><div class="fg"><label>Raça <span class="req">*</span></label><input type="text" data-req="true" placeholder="Raça"><div class="ferr">Obrigatório.</div></div><div class="fg"><label>Idade <span class="req">*</span></label><input type="text" data-req="true" placeholder="Ex: 2 anos"><div class="ferr">Obrigatório.</div></div><div class="fg"><label>Peso <span class="req">*</span></label><input type="text" data-req="true" placeholder="Ex: 5kg"><div class="ferr">Obrigatório.</div></div></div>
+          <div class="fg"><label>Sexo <span class="req">*</span></label><div class="rg"><label><input type="radio" name="sc2"> Fêmea</label><label><input type="radio" name="sc2"> Macho</label></div></div>
+          <div class="fg"><label>Animal de rua? <span class="req">*</span></label><div class="rg"><label><input type="radio" name="rc"> Sim</label><label><input type="radio" name="rc"> Não</label></div></div>
+        </div>
+        <div class="fs"><div class="fst">📍 Endereço</div>
+          <div class="fg"><label>Endereço <span class="req">*</span></label><input type="text" data-req="true" placeholder="Rua, número"><div class="ferr">Campo obrigatório.</div></div>
+          <div class="fr2"><div class="fg"><label>CEP <span class="req">*</span></label><input type="text" data-req="true" placeholder="00000-000" onkeypress="return event.charCode>=48&&event.charCode<=57||event.charCode===45"><div class="ferr">Obrigatório.</div></div><div class="fg"><label>Cidade <span class="req">*</span></label><input type="text" data-req="true" placeholder="Serra"><div class="ferr">Obrigatório.</div></div></div>
+          <div class="fg"><label>Bairro <span class="req">*</span></label><input type="text" data-req="true" placeholder="Seu bairro"><div class="ferr">Campo obrigatório.</div></div>
+        </div>
+        <div class="fs"><div class="fst">📄 Documentação</div>
+          <div class="al al-w">⚠ Caso não envie agora, apresente cópias no CRAS na data marcada.</div>
+          <div class="fr2"><div class="fg"><label>Comprovante NIS</label><input type="file"></div><div class="fg"><label>Carteira de Identidade</label><input type="file"></div></div>
+          <div class="fr2"><div class="fg"><label>Comprovante residência</label><input type="file"></div><div class="fg"><label>CNH</label><input type="file"></div></div>
+          <div class="fr2"><div class="fg"><label>Cartão de vacinação</label><input type="file"></div><div class="fg"><label>CPF</label><input type="file"></div></div>
+        </div>
+        <label class="cl" id="ck-castracao"><input type="checkbox"> Confirmo que todas as informações estão corretas e são verídicas</label>
+        <div style="margin-top:24px"><button class="btn btn-p btn-full btn-lg" onclick="submitF('castracao')">Enviar cadastro</button></div>
+        <div id="success-castracao" class="al al-s" style="display:none;margin-top:16px">✓ Cadastro realizado! Você foi adicionado à fila de espera.</div>
+      </div>
+    </div>
+    <div>
+      <div class="sc"><h4>Critérios</h4><ul class="sl"><li>Animal vacinado contra raiva</li><li>Não pode estar no cio (20 dias)</li><li>Não pode estar gestante (60 dias pós-parto)</li><li>Tutor com mínimo 18 anos</li></ul></div>
+      <div class="sc"><h4>Local</h4><p>CRAS de Laranjeiras · Seg a sex 8h–17h</p></div>
+    </div>
+  </div>
+  <footer><span>Prefeitura Municipal da Serra · Secretaria de Meio Ambiente</span><div><a>Contato</a><a>Acessibilidade</a><a>Privacidade</a></div></footer>
+<script src="js/global.js"></script>
+<script src="js/forms.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

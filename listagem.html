@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adoção — Programa ARCA</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/global.css">
+<link rel="stylesheet" href="css/perfil.css">
+<link rel="stylesheet" href="css/listagem.css">
+</head>
+<body data-page="listagem">
+<div id="toast">✓ <span id="tmsg"></span></div>
+
+<!-- MODAL ANIMAL -->
+<div class="amodal-bg" id="animalModal" onclick="closeModal(event)">
+  <div class="amodal" onclick="event.stopPropagation()">
+    <div class="amodal-header">
+      <div class="amodal-img" id="m-img">🐾</div>
+      <div class="amodal-close" onclick="closeModal()">✕</div>
+    </div>
+    <div class="amodal-body">
+      <span class="tag tag-o" style="margin-bottom:10px;display:inline-block">✓ Disponível para adoção</span>
+      <div class="amodal-name" id="m-name"></div>
+      <div class="amodal-meta" id="m-meta"></div>
+      <div class="amodal-grid">
+        <div class="amodal-row"><div class="k">Espécie</div><div class="v" id="m-esp"></div></div>
+        <div class="amodal-row"><div class="k">Porte</div><div class="v" id="m-porte"></div></div>
+        <div class="amodal-row"><div class="k">Idade</div><div class="v" id="m-age"></div></div>
+        <div class="amodal-row"><div class="k">Sexo</div><div class="v" id="m-sex"></div></div>
+        <div class="amodal-row"><div class="k">Castrado</div><div class="v" id="m-cas"></div></div>
+        <div class="amodal-row"><div class="k">Vacinado</div><div class="v" id="m-vac"></div></div>
+      </div>
+      <div class="amodal-desc" id="m-desc"></div>
+      <button class="btn btn-p btn-full btn-lg" onclick="closeModal();go('adocao')">Quero adotar →</button>
+    </div>
+  </div>
+</div>
+
+<nav><div class="nav-inner">
+  <a class="nav-logo" onclick="go('home')"><div class="nav-logo-icon">🐾</div><span class="nav-logo-text">Programa ARCA</span></a>
+  <ul class="nav-links">
+    <li><a id="nl-home" onclick="go('home')">Início</a></li>
+    <li><a id="nl-listagem" onclick="go('listagem')">Adoção</a></li>
+    <li><a id="nl-castracao" onclick="go('castracao')">Castração</a></li>
+    <li><a id="nl-resgate" onclick="go('resgate')">Resgate</a></li>
+    <li><a id="nl-denuncia" onclick="go('denuncia')">Denúncia</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="prof-btn" id="pb-main" onclick="toggleDrop('pd-main','pb-main')">
+      <div class="prof-av" id="nav-av">?</div>
+      <span class="prof-name" id="nav-nm">Usuário</span>
+      <span class="prof-arrow" id="nav-arr">▼</span>
+    </div>
+    <div class="prof-drop" id="pd-main">
+      <div class="prof-drop-head">
+        <div class="prof-drop-name" id="nav-pfn">Usuário</div>
+        <div class="prof-drop-email" id="nav-pfe">email@gmail.com</div>
+      </div>
+      <div class="prof-drop-item" onclick="go('listagem');closeDrops()">🐶 Ver animais</div>
+      <div class="prof-drop-item" onclick="go('castracao');closeDrops()">✂️ Agendar castração</div>
+      <div class="prof-drop-item" onclick="go('resgate');closeDrops()">🚑 Solicitar resgate</div>
+      <div class="prof-drop-item" onclick="go('denuncia');closeDrops()">⚠️ Fazer denúncia</div>
+      <div class="prof-drop-div"></div>
+      <div class="prof-drop-item danger" onclick="doLogout()">↩ Sair</div>
+    </div>
+  </div>
+</div></nav>
+
+
+
+<div class="ph"><div class="ctr"><h1>Adoção</h1><p>Encontre o companheiro ideal para a sua família</p></div></div>
+<div class="ll2">
+  <div class="fp">
+    <div class="fpt">Filtros</div>
+    <div class="fg2">
+      <div class="fg2t">Espécie</div>
+      <label class="fo"><input type="checkbox" class="fs" value="cao" checked onchange="applyF()"> Cão <span class="fc2" id="fc-cao"></span></label>
+      <label class="fo"><input type="checkbox" class="fs" value="gato" checked onchange="applyF()"> Gato <span class="fc2" id="fc-gato"></span></label>
+    </div>
+    <div class="fg2">
+      <div class="fg2t">Porte</div>
+      <label class="fo"><input type="checkbox" class="fz" value="pequeno" checked onchange="applyF()"> Pequeno</label>
+      <label class="fo"><input type="checkbox" class="fz" value="medio" checked onchange="applyF()"> Médio</label>
+      <label class="fo"><input type="checkbox" class="fz" value="grande" checked onchange="applyF()"> Grande</label>
+    </div>
+    <div class="fg2">
+      <div class="fg2t">Faixa etária</div>
+      <label class="fo"><input type="checkbox" class="fa" value="filhote" checked onchange="applyF()"> Filhote</label>
+      <label class="fo"><input type="checkbox" class="fa" value="adulto" checked onchange="applyF()"> Adulto</label>
+      <label class="fo"><input type="checkbox" class="fa" value="idoso" checked onchange="applyF()"> Idoso</label>
+    </div>
+    <div class="fg2">
+      <div class="fg2t">Sexo</div>
+      <label class="fo"><input type="checkbox" class="fg3" value="macho" checked onchange="applyF()"> Macho</label>
+      <label class="fo"><input type="checkbox" class="fg3" value="femea" checked onchange="applyF()"> Fêmea</label>
+    </div>
+    <button class="bcl" onclick="clearF()">Limpar filtros</button>
+  </div>
+  <div>
+    <div class="ltop">
+      <span class="lcnt" id="lcnt">12 animais encontrados</span>
+      <select class="ss" onchange="applyF()">
+        <option value="recent">Mais recentes</option>
+        <option value="az">Nome A-Z</option>
+        <option value="za">Nome Z-A</option>
+      </select>
+    </div>
+    <div class="lgr" id="lgr"></div>
+    <div class="pg" id="pgr"></div>
+  </div>
+</div>
+
+<footer><span>Prefeitura Municipal da Serra · Secretaria de Meio Ambiente</span><div><a>Contato</a><a>Acessibilidade</a><a>Privacidade</a></div></footer>
+<script src="js/global.js"></script>
+<script src="js/listagem.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded",()=>{ state.filtered=[...ANIMALS];renderListing();updateCounts(); });</script>
+</body>
+</html>
