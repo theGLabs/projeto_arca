@@ -67,13 +67,13 @@ projeto_arca/
 
 ---
 
+## 🎓 UVV — Universidade de Vila Velha
+Projeto Integrador — Disciplinas de UX e Construção Web · 2026
+
+---
+
 ## 📬 Contato
 
 - GitHub: [@theGLabs](https://github.com/theGLabs)
 - LinkedIn: [Guilherme Fabris](https://www.linkedin.com/in/guilherme-fabris/)
 - Email: guidiasfabris@gmail.com
-
----
-
-## 🎓 UVV — Universidade de Vila Velha
-Projeto Integrador — Disciplinas de UX e Construção Web · 2026
